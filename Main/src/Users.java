@@ -35,6 +35,7 @@ public class Users {
         add_username();
         add_email();
         Make_password();
+        Make_password();
 
     }
 
