@@ -5,7 +5,7 @@ public class App {
         Users user = new Users();
         user.add_username();
         user.add_email();
-        user.Make_password();
+        user.Create_password();
 
         Task task = new Task();
 
@@ -13,7 +13,5 @@ public class App {
         task.Duration();
         task.task_completion();
         task.task_viewer();
-
-
     }
 }

@@ -10,8 +10,6 @@ public class Users {
         username=null;
         email=null;
         password=null;
-
-
     }
 
     public String add_username(){
@@ -30,11 +28,18 @@ public class Users {
         return this.email;
     }
 
-    public String Make_password(){
+    public String Create_password(){
         Scanner myObj = new Scanner(System.in);
-        System.out.println("Enter password");
+        System.out.println("Enter a password");
+
+
         String input = myObj.nextLine();
         System.out.println("Password: " + input);
+
+        System.out.println("Confirm password");
+        String input2 = myObj.nextLine();
+        System.out.println("Password: " + input2);
+        System.out.println("New password created!!");
         return this.password;
     }
 
