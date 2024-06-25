@@ -2,9 +2,11 @@ import java.time.Duration;
 import java.util.Scanner;
 
 public class Task {
-    public String task;
-    public int Duration;
-    public String completion;
+    private String task;
+    private int Duration;
+    private String completion;
+
+    private String Reason;
 
 
     public String add_task(){
@@ -40,6 +42,7 @@ public class Task {
             System.out.println("DONE");
         }else if(input.equals("n")){
             System.out.println("NOT DONE");
+            reason();
         }
 
 
@@ -48,14 +51,19 @@ public class Task {
     }
 
     void reason(){
+        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Enter reason for not completing");
+        String input = myObj.nextLine();
 
-        System.out.println("Reason: ");
+        this.Reason= input;
+        System.out.println("Reason: "+Reason);
     }
 
     public void main(String[] args) {
         add_task();
         Duration();
         task_completion();
+
     }
 
 }
