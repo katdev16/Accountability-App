@@ -1,4 +1,5 @@
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Task {
@@ -8,6 +9,7 @@ public class Task {
 
     private String Reason;
 
+    private ArrayList task_viewer[];
 
     public String add_task(){
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
@@ -44,9 +46,6 @@ public class Task {
             System.out.println("NOT DONE");
             reason();
         }
-
-
-
         return true;
     }
 
@@ -63,7 +62,6 @@ public class Task {
         add_task();
         Duration();
         task_completion();
-
     }
 
 }
