@@ -82,7 +82,6 @@ public class Task {
         Duration();
         task_completion();
         task_viewer();
-
     }
 
 }
