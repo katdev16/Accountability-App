@@ -34,6 +34,13 @@ public class Task {
         System.out.println("Completion(y/n)");
         String input = myObj.nextLine();
 
+        this.completion=input;
+
+        if(input.equals("y")){
+            System.out.println("DONE");
+        }else if(input.equals("n")){
+            System.out.println("NOT DONE");
+        }
 
 
 
@@ -48,6 +55,7 @@ public class Task {
     public void main(String[] args) {
         add_task();
         Duration();
+        task_completion();
     }
 
 }
