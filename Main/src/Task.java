@@ -9,14 +9,19 @@ public class Task {
 
     private String Reason;
 
-    private ArrayList task_viewer[];
+    private ArrayList<String> task_list;
 
     public String add_task(){
+        this.task_list= new ArrayList<String>();
+
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Enter task");
 
         this.task = myObj.nextLine();  // Read user input
         System.out.println("Task added: " + task);  // Output user input
+        task_list.add(task);
+//        System.out.println(task_list);
+
         return task;
     }
 
@@ -58,10 +63,27 @@ public class Task {
         System.out.println("Reason: "+Reason);
     }
 
+    public ArrayList<String> task_viewer(){
+
+
+        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("View task dashboard(y/n)");
+        String input = myObj.nextLine();
+        if(input.equals("y")){
+            System.out.println(task_list);
+        }
+
+        return this.task_list;
+    }
+
+
     public void main(String[] args) {
         add_task();
         Duration();
         task_completion();
+        task_viewer();
+
+
     }
 
 }
