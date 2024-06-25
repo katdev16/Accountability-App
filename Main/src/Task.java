@@ -11,6 +11,13 @@ public class Task {
 
     private ArrayList<String> task_list;
 
+    public Task(){
+        task=null;
+        Duration=0;
+        completion=null;
+        Reason=null;
+    }
+
     public String add_task(){
         this.task_list= new ArrayList<String>();
 

@@ -5,6 +5,15 @@ public class Users {
     private String email;
     private String password;
 
+    public Users(){
+
+        username=null;
+        email=null;
+        password=null;
+
+
+    }
+
     public String add_username(){
         Scanner myObj = new Scanner(System.in);
         System.out.println("Enter username");
@@ -31,11 +40,11 @@ public class Users {
 
 
 
-    public void main(String[] args) {
-        add_username();
-        add_email();
-        Make_password();
-    }
+//    public void main(String[] args) {
+//        add_username();
+//        add_email();
+//        Make_password();
+//    }
 
 
 }
