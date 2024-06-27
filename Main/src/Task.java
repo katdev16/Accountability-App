@@ -54,6 +54,8 @@ public class Task {
 
         if(input.equals("y")){
             System.out.println("DONE");
+            Points points = new Points();
+            points.setNumber();
         }else if(input.equals("n")){
             System.out.println("NOT DONE");
             reason();

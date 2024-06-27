@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Points {
     private int number;
 
@@ -10,7 +12,12 @@ public class Points {
 //        number
 //    }
     public void setNumber(){
-        number=1;
+        Scanner myobj = new Scanner((System.in));
+        String input=myobj.nextLine();
+        System.out.println("How many points for this task(1-10 :");
+
+
+        number=+Integer.parseInt(input);
     }
 
     public int getNumber(){
