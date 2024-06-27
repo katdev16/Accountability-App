@@ -12,7 +12,7 @@ public class Points {
 //        number
 //    }
     public Points(){
-        number=1;
+        number=0;
     }
     public void setNumber(){
         Scanner myobj = new Scanner((System.in));
