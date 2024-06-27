@@ -11,17 +11,23 @@ public class Points {
 //    public int points_for_completion(){
 //        number
 //    }
+    public Points(){
+        number=1;
+    }
     public void setNumber(){
         Scanner myobj = new Scanner((System.in));
-        String input=myobj.nextLine();
+
         System.out.println("How many points for this task(1-10 :");
+        String input=myobj.nextLine();
 
-
-        number=+Integer.parseInt(input);
+        this.number=Integer.parseInt(input);
+        System.out.println(number);
     }
 
     public int getNumber(){
-        return number;
+
+        return this.number;
     }
+
 }
 

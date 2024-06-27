@@ -1,6 +1,6 @@
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class Task {
     private String task;
@@ -10,6 +10,8 @@ public class Task {
     private String Reason;
 
     private ArrayList<String> task_list;
+
+    public Points points = new Points();
 
     public Task(){
         task=null;
@@ -54,7 +56,7 @@ public class Task {
 
         if(input.equals("y")){
             System.out.println("DONE");
-            Points points = new Points();
+
             points.setNumber();
         }else if(input.equals("n")){
             System.out.println("NOT DONE");
@@ -72,7 +74,7 @@ public class Task {
         System.out.println("Reason: "+Reason);
     }
 
-    public ArrayList<String> task_viewer(){
+    public ArrayList<String> task_dashboard(){
 
 
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
@@ -80,6 +82,10 @@ public class Task {
         String input = myObj.nextLine();
         if(input.equals("y")){
             System.out.println(task_list);
+
+
+
+            System.out.println("Points :"+points.getNumber());
         }
 
         return this.task_list;
@@ -90,7 +96,7 @@ public class Task {
         add_task();
         Duration();
         task_completion();
-        task_viewer();
+        task_dashboard();
     }
 
 }

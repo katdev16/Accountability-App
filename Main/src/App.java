@@ -13,7 +13,7 @@ public class App {
         task.add_task();
         task.Duration();
         task.task_completion();
-        task.task_viewer();
+        task.task_dashboard();
 
         Scanner myObj = new Scanner(System.in);
         System.out.println("Add new task(y/n :");
@@ -23,7 +23,7 @@ public class App {
                 task.add_task();
                 task.Duration();
                 task.task_completion();
-                task.task_viewer();
+                task.task_dashboard();
 
         }
 
