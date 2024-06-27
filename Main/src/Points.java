@@ -21,7 +21,6 @@ public class Points {
         String input=myobj.nextLine();
 
         this.number=Integer.parseInt(input);
-        System.out.println(number);
     }
 
     public int getNumber(){

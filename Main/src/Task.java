@@ -28,6 +28,7 @@ public class Task {
 
         this.task = myObj.nextLine();  // Read user input
         System.out.println("Task added: " + task);  // Output user input
+        points.setNumber();
         task_list.add(task);
 //        System.out.println(task_list);
 
@@ -57,7 +58,7 @@ public class Task {
         if(input.equals("y")){
             System.out.println("DONE");
 
-            points.setNumber();
+
         }else if(input.equals("n")){
             System.out.println("NOT DONE");
             reason();
@@ -92,12 +93,12 @@ public class Task {
     }
 
 
-    public void main(String[] args) {
-        add_task();
-        Duration();
-        task_completion();
-        task_dashboard();
-    }
+//    public void main(String[] args) {
+//        add_task();
+//        Duration();
+//        task_completion();
+//        task_dashboard();
+//    }
 
 }
 
