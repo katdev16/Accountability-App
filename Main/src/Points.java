@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Points {
     private int number;
+    private int user_points =0;
 
 //    public int task_point(){
 //        this.number+=1;
@@ -21,6 +22,14 @@ public class Points {
         String input=myobj.nextLine();
 
         this.number=Integer.parseInt(input);
+    }
+
+    public void setUser_points(int user_points){
+
+        this.user_points+=user_points;
+    }
+    public int getUser_points(){
+        return user_points;
     }
 
     public int getNumber(){

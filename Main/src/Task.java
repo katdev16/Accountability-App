@@ -57,6 +57,7 @@ public class Task {
 
         if(input.equals("y")){
             System.out.println("DONE");
+            points.setUser_points(points);
 
 
         }else if(input.equals("n")){

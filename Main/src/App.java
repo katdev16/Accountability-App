@@ -24,7 +24,6 @@ public class App {
                 task.Duration();
                 task.task_completion();
                 task.task_dashboard();
-
         }
 
 
