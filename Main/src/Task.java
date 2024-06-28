@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class Task {
+public class Task extends Points{
     private String task;
     private int Duration;
     private String completion;
@@ -12,6 +12,9 @@ public class Task {
     private ArrayList<String> task_list;
 
     public Points points = new Points();
+
+
+
 
     public Task(){
         task=null;
@@ -28,7 +31,7 @@ public class Task {
 
         this.task = myObj.nextLine();  // Read user input
         System.out.println("Task added: " + task);  // Output user input
-        points.setNumber();
+        setNumber();
         task_list.add(task);
 //        System.out.println(task_list);
 
@@ -55,9 +58,10 @@ public class Task {
 
         this.completion=input;
 
+
         if(input.equals("y")){
             System.out.println("DONE");
-            points.setUser_points(points);
+            setUser_points(getNumber());
 
 
         }else if(input.equals("n")){
@@ -87,7 +91,8 @@ public class Task {
 
 
 
-            System.out.println("Points :"+points.getNumber());
+            System.out.println("Points :"+getUser_points());
+
         }
 
         return this.task_list;

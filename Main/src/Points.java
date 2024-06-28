@@ -1,4 +1,6 @@
+
 import java.util.Scanner;
+
 
 public class Points {
     private int number;
