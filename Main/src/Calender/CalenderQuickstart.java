@@ -25,7 +25,7 @@ import java.util.Collections;
 import java.util.List;
 
 /* class to demonstrate use of Calendar events list API */
-public class CalendarQuickstart {
+public class CalenderQuickstart {
     /**
      * Application name.
      */
