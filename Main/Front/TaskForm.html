@@ -5,6 +5,45 @@
     <title>Title</title>
 </head>
 <body>
+<div>
+    <section class="expense-list">
+        <h1>Submit a New Task</h1>
+        <form method="post" action="/task" enctype="application/x-www-form-urlencoded">
+            <div class="form-group">
+                <label for="task">Task</label>
+                <input type="text" id="task" name="description" required aria-required="true" aria-describedby="descriptionHelp" />
+                <small id="descriptionHelp" class="form-text">Provide a brief description of the expense.</small>
+            </div>
+            <br>
 
+
+
+
+
+
+
+
+
+
+
+
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required aria-required="true" />
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label for="points">Points</label>
+                <input type="number" id="points" name="amount" required aria-required="true" min="0" step="0.01" />
+            </div>
+            <br>
+
+            <div class="form-group">
+                <input id="submit" type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </section>
+</div>
 </body>
 </html>
