@@ -13,9 +13,6 @@ public class Task extends Points{
 
     public Points points = new Points();
 
-
-
-
     public Task(){
         task=null;
         Duration=0;
