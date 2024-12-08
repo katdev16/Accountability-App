@@ -1,6 +1,6 @@
 1. Project Structure and Design
 Classes and Components:
-Task Class: Represents each task with attributes such as description, due date, completion status, points, and reason for non-completion.
+com.katdev.accountabilityapp.model.Task Class: Represents each task with attributes such as description, due date, completion status, points, and reason for non-completion.
 User Class: Represents the user with attributes like name, email, and accumulated points.
 TaskManager Class: Handles CRUD operations for tasks, points calculation, and generating reports.
 EmailService Class: Sends weekly reports via email.
@@ -25,9 +25,9 @@ JavaMail API: Library for sending emails programmatically.
 Step 1: Set Up Your Development Environment
 Install Java Development Kit (JDK) and set up your IDE (like IntelliJ IDEA or Eclipse).
 Step 2: Design Your Classes and Database Schema
-Define classes (Task, User) and their attributes.
+Define classes (com.katdev.accountabilityapp.model.Task, User) and their attributes.
 Design database schema for tasks and users using SQLite or any preferred database.
-Step 3: Implement Task and User Management
+Step 3: Implement com.katdev.accountabilityapp.model.Task and User Management
 Implement CRUD operations for tasks and users using JDBC or Hibernate.
 Calculate points based on task completion status.
 Step 4: Integrate Google Calendar API

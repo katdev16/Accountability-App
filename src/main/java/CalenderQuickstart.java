@@ -11,8 +11,8 @@
 //import com.google.api.client.util.store.FileDataStoreFactory;
 //import com.google.api.services.calendar.Calendar;
 //import com.google.api.services.calendar.CalendarScopes;
-//import com.google.api.services.calendar.model.Event;
-//import com.google.api.services.calendar.model.Events;
+//import com.google.api.services.calendar.com.katdev.accountabilityapp.model.Event;
+//import com.google.api.services.calendar.com.katdev.accountabilityapp.model.Events;
 //
 //import java.io.FileNotFoundException;
 //import java.io.IOException;
@@ -75,16 +75,16 @@
 //    }
 //
 //    public static void main(String... args) throws IOException, GeneralSecurityException {
-//        // Build a new authorized API client service.
+//        // Build a new authorized API client com.katdev.accountabilityapp.service.
 //        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-//        Calendar service =
+//        Calendar com.katdev.accountabilityapp.service =
 //                new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
 //                        .setApplicationName(APPLICATION_NAME)
 //                        .build();
 //
 //        // List the next 10 events from the primary calendar.
 //        DateTime now = new DateTime(System.currentTimeMillis());
-//        Events events = service.events().list("primary")
+//        Events events = com.katdev.accountabilityapp.service.events().list("primary")
 //                .setMaxResults(10)
 //                .setTimeMin(now)
 //                .setOrderBy("startTime")

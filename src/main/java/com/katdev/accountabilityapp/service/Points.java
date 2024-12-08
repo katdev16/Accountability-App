@@ -1,3 +1,4 @@
+package com.katdev.accountabilityapp.service;
 
 import java.util.Scanner;
 
