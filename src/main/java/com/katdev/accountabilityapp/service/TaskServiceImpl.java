@@ -1,5 +1,6 @@
 package com.katdev.accountabilityapp.service;
 
+import com.katdev.accountabilityapp.DataTransfer.TaskDTO;
 import com.katdev.accountabilityapp.model.Task;
 import com.katdev.accountabilityapp.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class TaskServiceImpl implements TaskService{
     @Autowired
@@ -91,6 +94,21 @@ public class TaskServiceImpl implements TaskService{
     public Task getTaskById(int id) {
         return taskRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Task with ID " + id + " not found"));
+    }
+    @Override
+    public List<TaskDTO> getTasksByUserId(int userId) {
+        List<Task> tasks = taskRepository.findAll().stream()
+                .filter(task -> task.getUser().getId() == userId)
+                .collect(Collectors.toList());
+
+        return tasks.stream().map(task -> {
+            TaskDTO taskDTO = new TaskDTO();
+            taskDTO.setId(task.getId());
+            taskDTO.setTitle(task.getTitle());
+            taskDTO.setDescription(task.getDescription());
+            taskDTO.setStatus(task.getStatus());
+            return taskDTO;
+        }).collect(Collectors.toList());
     }
 
 }

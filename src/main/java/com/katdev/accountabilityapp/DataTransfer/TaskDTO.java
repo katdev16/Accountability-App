@@ -1,41 +1,16 @@
-package com.katdev.accountabilityapp.model;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+package com.katdev.accountabilityapp.DataTransfer;
 
 import java.time.LocalDate;
 
-@Entity
-public class Task {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class TaskDTO {
     private int id;
-
     private String title;
     private String description;
     private String status;
-    private LocalDate addedDate; // The date the task was added
-    private LocalDate completionDate; // The date the task should be completed
+    private LocalDate addedDate;
+    private LocalDate completionDate;
 
-    public Task() {
-        this.status = "Pending"; // Default value for status
-    }
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-//    @JsonIgnore
-    private User user;
-
-    // Getters and setters for user
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    // Getters and Setters
+    // Getters and setters...
 
     public int getId() {
         return id;
@@ -68,6 +43,7 @@ public class Task {
     public void setStatus(String status) {
         this.status = status;
     }
+
     public LocalDate getAddedDate() {
         return addedDate;
     }

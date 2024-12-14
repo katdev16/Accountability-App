@@ -1,5 +1,6 @@
 package com.katdev.accountabilityapp.service;
 
+import com.katdev.accountabilityapp.DataTransfer.TaskDTO;
 import com.katdev.accountabilityapp.model.Task;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public interface TaskService {
     Task markTaskAsCompleted(int id);
 
     Task getTaskById(int id);
+    public List<TaskDTO> getTasksByUserId(int userId);
 
 //    String deletetask(Task task);
 }

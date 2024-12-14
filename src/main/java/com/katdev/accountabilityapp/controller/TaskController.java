@@ -1,8 +1,10 @@
 package com.katdev.accountabilityapp.controller;
 
+import com.katdev.accountabilityapp.DataTransfer.TaskDTO;
 import com.katdev.accountabilityapp.model.Task;
 import com.katdev.accountabilityapp.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -73,6 +75,12 @@ public class TaskController {
     public ResponseEntity<Task> addTask(@RequestBody Task task) {
         Task savedTask = taskService.saveTask(task);
         return ResponseEntity.ok(savedTask);
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<TaskDTO>> getTasksByUser(@PathVariable int userId) {
+        List<TaskDTO> tasks = taskService.getTasksByUserId(userId);
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
 
