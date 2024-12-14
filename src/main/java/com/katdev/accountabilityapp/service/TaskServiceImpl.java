@@ -26,4 +26,11 @@ public class TaskServiceImpl implements TaskService{
         taskRepository.delete(task);
         return "Task deleted";
     }
+    @Override
+    public Task updateTaskStatus(int taskId, String status) {
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new RuntimeException("Task not found with id: " + taskId));
+        task.setStatus(status);
+        return taskRepository.save(task);
+    }
 }

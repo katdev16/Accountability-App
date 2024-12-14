@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.time.LocalDate;
+
 @Entity
 public class Task {
 
@@ -15,6 +17,8 @@ public class Task {
     private String title;
     private String description;
     private String status;
+    private LocalDate addedDate; // The date the task was added
+    private LocalDate completionDate; // The date the task should be completed
 
     public Task() {
         this.status = "Pending"; // Default value for status
