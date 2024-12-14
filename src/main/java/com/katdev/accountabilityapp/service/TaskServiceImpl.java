@@ -5,6 +5,7 @@ import com.katdev.accountabilityapp.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 @Service
 public class TaskServiceImpl implements TaskService{
@@ -12,6 +13,16 @@ public class TaskServiceImpl implements TaskService{
     private TaskRepository taskRepository;
     @Override
     public Task saveTask(Task task) {
+        // Set the addedDate to the current date if it's not already set
+        if (task.getAddedDate() == null) {
+            task.setAddedDate(LocalDate.now());
+        }
+
+        // Validate completionDate
+        if (task.getCompletionDate() != null && task.getCompletionDate().isBefore(task.getAddedDate())) {
+            throw new RuntimeException("Completion date cannot be before the added date");
+        }
+
         return taskRepository.save(task);
     }
 
@@ -33,4 +44,53 @@ public class TaskServiceImpl implements TaskService{
         task.setStatus(status);
         return taskRepository.save(task);
     }
+
+    @Override
+    public Task updateTask(int id, Task updatedTask) {
+        // Check if the task exists
+        Task existingTask = taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task with ID " + id + " not found"));
+
+        // Update task details
+        existingTask.setTitle(updatedTask.getTitle());
+        existingTask.setDescription(updatedTask.getDescription());
+        existingTask.setStatus(updatedTask.getStatus());
+        existingTask.setCompletionDate(updatedTask.getCompletionDate());
+
+        // Save updated task to the database
+        return taskRepository.save(existingTask);
+    }
+
+
+    @Override
+    public void deleteTaskById(int id) {
+        // Check if the task exists
+        Task existingTask = taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task with ID " + id + " not found"));
+
+        // Delete the task
+        taskRepository.delete(existingTask);
+    }
+
+
+    @Override
+    public Task markTaskAsCompleted(int id) {
+        // Check if the task exists
+        Task existingTask = taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task with ID " + id + " not found"));
+
+        // Update the status to "Completed"
+        existingTask.setStatus("Completed");
+
+        // Save the updated task
+        return taskRepository.save(existingTask);
+    }
+
+
+    @Override
+    public Task getTaskById(int id) {
+        return taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task with ID " + id + " not found"));
+    }
+
 }
