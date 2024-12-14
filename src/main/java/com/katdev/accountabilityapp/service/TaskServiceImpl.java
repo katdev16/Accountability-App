@@ -107,6 +107,8 @@ public class TaskServiceImpl implements TaskService{
             taskDTO.setTitle(task.getTitle());
             taskDTO.setDescription(task.getDescription());
             taskDTO.setStatus(task.getStatus());
+            taskDTO.setAddedDate(task.getAddedDate());
+            taskDTO.setCompletionDate(task.getCompletionDate());
             return taskDTO;
         }).collect(Collectors.toList());
     }
