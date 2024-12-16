@@ -1,12 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      this is the frontend
-    </div>
+    <Router>
+      <div>
+        <h1>Accountability App</h1>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
