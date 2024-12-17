@@ -6,12 +6,11 @@ const API_URL = "http://localhost:8080"; // Replace with your backend URL
 export const loginUser = async (email, password) => {
   try {
     const response = await axios.post(`${API_URL}/users/login`, { email, password });
-    return response.data; // Token or user data
+    return response.data; // User data or token
   } catch (error) {
     throw new Error(error.response?.data?.message || "Login failed");
   }
 };
-
 // Register new user
 export const registerUser = async (userData) => {
   try {

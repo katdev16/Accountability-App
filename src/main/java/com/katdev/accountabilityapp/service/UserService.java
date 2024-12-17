@@ -158,4 +158,8 @@ public class UserService {
         return TaskMapper.toDTO(savedTask);
     }
 
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.katdev.accountabilityapp.controller;
 
+import com.katdev.accountabilityapp.DataTransfer.LoginRequest;
 import com.katdev.accountabilityapp.DataTransfer.TaskDTO;
 import com.katdev.accountabilityapp.DataTransfer.UserDTO;
 import com.katdev.accountabilityapp.model.User;
@@ -31,7 +32,13 @@ public class UserController {
     /**
      * Get a user by ID.
      */
-    @GetMapping("/{id}")
+//    @GetMapping("/{id}")
+//    public ResponseEntity<UserDTO> getUserById(@PathVariable int id) {
+//        UserDTO userDTO = userService.getUserById(id);
+//        return ResponseEntity.ok(userDTO);
+//    }
+
+    @GetMapping("/login{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable int id) {
         UserDTO userDTO = userService.getUserById(id);
         return ResponseEntity.ok(userDTO);
@@ -78,4 +85,23 @@ public class UserController {
         TaskDTO createdTask = userService.createTaskForUser(id, taskDTO);
         return new ResponseEntity<>(createdTask, HttpStatus.CREATED);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
+        User user = userService.findByEmail(loginRequest.getEmail())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+//        if (!user.getPassword().equals(loginRequest.getPassword())) {
+//            throw new RuntimeException("Invalid credentials");
+//        }
+
+        // Map User to DTO to avoid exposing sensitive data
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getId());
+        userDTO.setName(user.getName());
+        userDTO.setEmail(user.getEmail());
+
+        return ResponseEntity.ok(userDTO);
+    }
+
 }
