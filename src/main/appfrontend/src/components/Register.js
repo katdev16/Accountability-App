@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { registerUser } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -7,13 +8,23 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const newUser = await registerUser({ name, email, password });
-      setSuccess("User registered successfully!");
-      console.log("New user created:", newUser);
+      // const newUser = await registerUser({ name, email });
+      // setSuccess("User registered successfully!");
+      // console.log("New user created:", newUser);
+
+      const userData = { name, email, password };
+
+      // Call the API to register the user
+      const createdUser = await registerUser(userData);
+
+      // Show success message
+      setSuccess(`User "${createdUser.name}" registered successfully! Redirecting...`);
+      setTimeout(() => navigate("/"), 2000);
     } catch (err) {
       setError(err.message);
     }
@@ -35,7 +46,7 @@ const Register = () => {
         </div>
         <div>
           <label>Password:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}  />
         </div>
         <button type="submit">Register</button>
       </form>
