@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tasks")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TaskController {
 
     @Autowired
@@ -81,6 +82,13 @@ public class TaskController {
     public ResponseEntity<List<TaskDTO>> getTasksByUser(@PathVariable int userId) {
         List<TaskDTO> tasks = taskService.getTasksByUserId(userId);
         return new ResponseEntity<>(tasks, HttpStatus.OK);
+    }
+
+
+    @PutMapping("/{id}/completed")
+    public ResponseEntity<TaskDTO> markTaskAsComplete(@PathVariable int id) {
+        TaskDTO updatedTask = taskService.markTaskAsComplete(id);
+        return ResponseEntity.ok(updatedTask);
     }
 
 

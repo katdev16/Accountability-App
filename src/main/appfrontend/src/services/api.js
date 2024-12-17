@@ -3,9 +3,9 @@ import axios from "axios";
 const API_URL = "http://localhost:8080"; // Replace with your backend URL
 
 // Login user
-export const loginUser = async (email, password) => {
+export const loginUser = async (email) => {
   try {
-    const response = await axios.post(`${API_URL}/users/login`, { email, password });
+    const response = await axios.post(`${API_URL}/users/login`, { email});
     return response.data; // User data or token
   } catch (error) {
     throw new Error(error.response?.data?.message || "Login failed");

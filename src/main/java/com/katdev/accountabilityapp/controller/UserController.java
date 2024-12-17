@@ -29,6 +29,12 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    @GetMapping("/{id}/tasks")
+    public ResponseEntity<List<TaskDTO>> getTasksForUser(@PathVariable int id) {
+        List<TaskDTO> tasks = userService.getTasksForUser(id);
+        return ResponseEntity.ok(tasks);
+    }
+
     /**
      * Get a user by ID.
      */
@@ -38,7 +44,7 @@ public class UserController {
 //        return ResponseEntity.ok(userDTO);
 //    }
 
-    @GetMapping("/login{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable int id) {
         UserDTO userDTO = userService.getUserById(id);
         return ResponseEntity.ok(userDTO);

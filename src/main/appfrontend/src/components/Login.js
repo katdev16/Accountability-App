@@ -13,7 +13,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const userData = await loginUser(email, password);
+      const userData = await loginUser(email);
       setUserId(userData.id); // Save the logged-in user's ID
       setSuccess("Login successful!");
     } catch (err) {
@@ -39,7 +39,7 @@ const Login = () => {
             </div>
             <div>
               <label>Password:</label>
-              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
             <button type="submit">Login</button>
           </form>

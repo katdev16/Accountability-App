@@ -113,4 +113,26 @@ public class TaskServiceImpl implements TaskService{
         }).collect(Collectors.toList());
     }
 
+    @Override
+    public TaskDTO markTaskAsComplete(int taskId) {
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+
+        task.setStatus("completed");
+        task.setCompletionDate(LocalDate.now()); // Set current date as completion date
+
+        Task updatedTask = taskRepository.save(task);
+
+        // Map to DTO
+        TaskDTO taskDTO = new TaskDTO();
+        taskDTO.setId(updatedTask.getId());
+        taskDTO.setTitle(updatedTask.getTitle());
+        taskDTO.setDescription(updatedTask.getDescription());
+        taskDTO.setStatus(updatedTask.getStatus());
+        taskDTO.setAddedDate(updatedTask.getAddedDate());
+        taskDTO.setCompletionDate(updatedTask.getCompletionDate());
+
+        return taskDTO;
+    }
+
 }

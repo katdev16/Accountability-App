@@ -20,5 +20,7 @@ public interface TaskService {
     Task getTaskById(int id);
     public List<TaskDTO> getTasksByUserId(int userId);
 
+    public TaskDTO markTaskAsComplete(int id);
+
 //    String deletetask(Task task);
 }

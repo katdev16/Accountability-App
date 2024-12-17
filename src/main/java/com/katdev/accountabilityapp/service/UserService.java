@@ -162,4 +162,23 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
+
+    public List<TaskDTO> getTasksForUser(int userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        List<Task> tasks = user.getTasks();
+
+        return tasks.stream().map(task -> {
+            TaskDTO taskDTO = new TaskDTO();
+            taskDTO.setId(task.getId());
+            taskDTO.setTitle(task.getTitle());
+            taskDTO.setDescription(task.getDescription());
+            taskDTO.setStatus(task.getStatus());
+            taskDTO.setAddedDate(task.getAddedDate());
+            taskDTO.setCompletionDate(task.getCompletionDate());
+            return taskDTO;
+        }).collect(Collectors.toList());
+    }
+
 }
