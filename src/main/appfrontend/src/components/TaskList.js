@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { fetchTasksForUser, markTaskAsCompleted } from "../services/api";
+import { fetchTasksForUser, markTaskAsCompleted, addTaskForUser } from "../services/api";
+import TaskManager from "./TaskManger";
 
 const TaskList = ({ userId }) => {
   const [tasks, setTasks] = useState([]);
@@ -30,25 +31,25 @@ const TaskList = ({ userId }) => {
     }
   };
 
+  // Handle adding a new task
+  const handleAddTask = async (newTask) => {
+    try {
+      const createdTask = await addTaskForUser(userId, newTask);
+      setTasks((prevTasks) => [...prevTasks, createdTask]);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   return (
     <div>
-      <h2>Tasks for User {userId}</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <label>
-              <input
-                type="checkbox"
-                checked={task.status === "COMPLETED"}
-                onChange={() => handleTaskCompletion(task.id)}
-                disabled={task.status === "COMPLETED"} // Prevent re-checking
-              />
-              {task.title} - {task.status}
-            </label>
-          </li>
-        ))}
-      </ul>
+      <TaskManager
+        userId={userId}
+        tasks={tasks}
+        error={error}
+        handleTaskCompletion={handleTaskCompletion}
+        handleAddTask={handleAddTask}
+      />
     </div>
   );
 };

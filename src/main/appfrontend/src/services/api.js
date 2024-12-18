@@ -40,3 +40,13 @@ export const markTaskAsCompleted = async (taskId) => {
     throw new Error(error.response?.data?.message || "Failed to update task");
   }
 };
+
+// Add a new task for a user
+export const addTaskForUser = async (userId, taskData) => {
+  try {
+    const response = await axios.post(`${API_URL}/users/${userId}/tasks`, taskData);
+    return response.data; // Return the new task to be handled by the caller
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Failed to add task");
+  }
+};

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Optional;
@@ -146,6 +147,13 @@ public class UserService {
     public TaskDTO createTaskForUser(int userId, TaskDTO taskDTO) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (taskDTO.getAddedDate() == null ) {
+            taskDTO.setAddedDate(LocalDate.now()); // Format as String (e.g., "2024-12-17")
+        }
+        if (taskDTO.getStatus() == null ) {
+            taskDTO.setStatus("pending"); // Format as String (e.g., "2024-12-17")
+        }
 
         // Convert DTO to Entity
         Task task = TaskMapper.toEntity(taskDTO);
