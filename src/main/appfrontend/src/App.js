@@ -2,11 +2,13 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import AppBar from "./components/AppBar";
 
 const App = () => {
   return (
     <Router>
       <div>
+        <AppBar/>
         <h1>Accountability App</h1>
         <Routes>
           <Route path="/" element={<Login />} />
