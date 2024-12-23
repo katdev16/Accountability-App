@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchTasksForUser, markTaskAsCompleted, addTaskForUser } from "../services/api";
 import TaskManager from "./TaskManger";
+import DataTable from "./DataTable"
 
 const TaskList = ({ userId }) => {
   const [tasks, setTasks] = useState([]);
@@ -50,6 +51,10 @@ const TaskList = ({ userId }) => {
         handleTaskCompletion={handleTaskCompletion}
         handleAddTask={handleAddTask}
       />
+      <DataTable
+      tasks={tasks}
+      handleTaskCompletion={handleTaskCompletion}/>
+
     </div>
   );
 };
