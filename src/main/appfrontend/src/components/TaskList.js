@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchTasksForUser, markTaskAsCompleted, addTaskForUser } from "../services/api";
+import { fetchTasksForUser, markTaskAsCompleted, addTaskForUser ,TaskUpdate} from "../services/api";
 import TaskManager from "./TaskManger";
 import DataTable from "./DataTable"
 
@@ -42,6 +42,17 @@ const TaskList = ({ userId }) => {
     }
   };
 
+  const handleTaskUpdate =  async (taskId) => {
+    try {
+      const updatedTask = await TaskUpdate(taskId);
+      setTasks((prevTasks) =>
+        prevTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
+      );
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   return (
     <div>
       <TaskManager
@@ -50,10 +61,15 @@ const TaskList = ({ userId }) => {
         error={error}
         handleTaskCompletion={handleTaskCompletion}
         handleAddTask={handleAddTask}
+        
       />
       <DataTable
       tasks={tasks}
-      handleTaskCompletion={handleTaskCompletion}/>
+      handleTaskCompletion={handleTaskCompletion}
+      handleTaskUpdate={handleTaskUpdate}
+      />
+      
+      
 
     </div>
   );

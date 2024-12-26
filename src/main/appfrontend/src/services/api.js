@@ -50,3 +50,18 @@ export const addTaskForUser = async (userId, taskData) => {
     throw new Error(error.response?.data?.message || "Failed to add task");
   }
 };
+
+export const TaskUpdate = async (updatedTask, setTasks) => {
+  try {
+    const response = await axios.put(`${API_URL}/tasks/${updatedTask.id}`, updatedTask);
+
+    // Update state with the updated task from the backend
+    setTasks((prevTasks) =>
+      prevTasks.map((task) => (task.id === response.data.id ? response.data : task))
+    );
+  } catch (error) {
+    console.error('Error updating task:', error);
+    alert('Failed to update task. Please try again.');
+  }
+};
+
