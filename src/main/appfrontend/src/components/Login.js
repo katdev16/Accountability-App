@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { loginUser } from "../services/api";
 import TaskList from "./TaskList";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TaskManager from "./TaskManger";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +11,9 @@ const Login = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [userId, setUserId] = useState(null);
+  const navigate = useNavigate(); 
+  
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,6 +21,7 @@ const Login = () => {
       const userData = await loginUser(email);
       setUserId(userData.id); // Save the logged-in user's ID
       setSuccess("Login successful!");
+      navigate("/home", { state: { userId: userData.id } })
     } catch (err) {
       setError(err.message);
     }
@@ -24,12 +29,6 @@ const Login = () => {
 
   return (
     <div>
-      {userId ? (
-        // If logged in, show the task list
-        <TaskList userId={userId} />
-        // <TaskManager userId={userId}/>
-      ) : (
-        // Otherwise, show the login form
         <div>
           <h2>Login</h2>
           {error && <p style={{ color: "red" }}>{error}</p>}
@@ -49,7 +48,7 @@ const Login = () => {
             Don’t have an account? <Link to="/register">Register here</Link>.
           </p>
         </div>
-      )}
+      
     </div>
   );
 };

@@ -2,10 +2,15 @@ import React, { useState, useEffect } from "react";
 import { fetchTasksForUser, markTaskAsCompleted, addTaskForUser ,TaskUpdate} from "../services/api";
 import TaskManager from "./TaskManger";
 import DataTable from "./DataTable"
+import AddTaskForm from "./AddTaskForm";
+import { useLocation } from "react-router-dom";
 
-const TaskList = ({ userId }) => {
+
+const TaskList = () => {
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState("");
+  const location = useLocation();
+  const { userId } = location.state || {}; 
 
   // Fetch tasks when the component mounts
   useEffect(() => {
@@ -55,14 +60,20 @@ const TaskList = ({ userId }) => {
 
   return (
     <div>
-      <TaskManager
+      {/* <TaskManager
         userId={userId}
         tasks={tasks}
         error={error}
         handleTaskCompletion={handleTaskCompletion}
-        handleAddTask={handleAddTask}
-        
-      />
+        handleAdd
+        Task={handleAddTask}
+      /> */}
+
+      <AddTaskForm
+      userId={userId}
+      tasks={tasks}
+      error={error}
+      handleAddTask={handleAddTask}/>
       <DataTable
       tasks={tasks}
       handleTaskCompletion={handleTaskCompletion}
