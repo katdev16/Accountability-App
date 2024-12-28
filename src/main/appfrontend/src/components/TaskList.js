@@ -47,9 +47,9 @@ const TaskList = () => {
     }
   };
 
-  const handleTaskUpdate =  async (taskId) => {
+  const handleTaskUpdate =  async (taskId, setTasks) => {
     try {
-      const updatedTask = await TaskUpdate(taskId);
+      const updatedTask = await TaskUpdate(taskId, setTasks);
       setTasks((prevTasks) =>
         prevTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
       );
@@ -78,6 +78,7 @@ const TaskList = () => {
       tasks={tasks}
       handleTaskCompletion={handleTaskCompletion}
       handleTaskUpdate={handleTaskUpdate}
+      setTasks={setTasks} 
       />
       
       
