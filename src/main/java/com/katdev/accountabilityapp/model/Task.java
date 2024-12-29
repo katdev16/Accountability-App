@@ -1,8 +1,6 @@
 package com.katdev.accountabilityapp.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
@@ -17,13 +15,15 @@ public class Task {
     private String status;
     private LocalDate addedDate; // The date the task was added
     private LocalDate completionDate; // The date the task should be completed
+    private int points; // Points assigned to the task
 
     public Task() {
         this.status = "Pending"; // Default value for status
+        this.points = 0; // Default points value
     }
+
     @ManyToOne
     @JoinColumn(name = "user_id")
-//    @JsonIgnore
     private User user;
 
     // Getters and setters for user
@@ -68,6 +68,7 @@ public class Task {
     public void setStatus(String status) {
         this.status = status;
     }
+
     public LocalDate getAddedDate() {
         return addedDate;
     }
@@ -82,5 +83,13 @@ public class Task {
 
     public void setCompletionDate(LocalDate completionDate) {
         this.completionDate = completionDate;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }
