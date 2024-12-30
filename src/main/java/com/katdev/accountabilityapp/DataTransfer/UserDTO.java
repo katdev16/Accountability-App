@@ -1,5 +1,7 @@
 package com.katdev.accountabilityapp.DataTransfer;
 
+import com.katdev.accountabilityapp.model.Task;
+
 import java.util.List;
 
 public class UserDTO {
@@ -7,6 +9,7 @@ public class UserDTO {
     private String name;
     private String email;
     private List<TaskDTO> tasks;
+    private int points;
 
     // Getters and setters...
 
@@ -40,6 +43,14 @@ public class UserDTO {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }
 

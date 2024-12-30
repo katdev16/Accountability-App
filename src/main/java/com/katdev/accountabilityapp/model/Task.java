@@ -15,6 +15,7 @@ public class Task {
     private String status;
     private LocalDate addedDate; // The date the task was added
     private LocalDate completionDate; // The date the task should be completed
+//    @Column(nullable = false, columnDefinition = "int default 0")
     private int points; // Points assigned to the task
 
     public Task() {

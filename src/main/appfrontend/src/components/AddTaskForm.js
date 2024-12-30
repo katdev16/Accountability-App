@@ -7,6 +7,7 @@ export default function AddTaskForm({ userId, tasks, error, handleTaskCompletion
         description: "",
         addedDate: "",
         completionDate: "",
+        points: 0,
       });
     
       const handleInputChange = (e) => {
@@ -22,6 +23,7 @@ export default function AddTaskForm({ userId, tasks, error, handleTaskCompletion
           description: "",
           addedDate: "",
           completionDate: "",
+          points: 0,
         });
       };
     
@@ -78,6 +80,21 @@ export default function AddTaskForm({ userId, tasks, error, handleTaskCompletion
                 />
             </label>
             </div>
+            <div>
+          <label>
+            Points:
+            <select
+              name="points"
+              value={newTask.points}
+              onChange={handleInputChange}
+              required
+            >
+              <option value={1}>1</option>
+              <option value={3}>3</option>
+              <option value={5}>5</option>
+            </select>
+          </label>
+        </div>
             <button type="submit">Add Task</button>
         </form></div>)
     

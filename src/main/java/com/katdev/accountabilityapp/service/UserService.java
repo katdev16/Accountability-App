@@ -96,6 +96,7 @@ public class UserService {
         userDTO.setId(savedUser.getId());
         userDTO.setName(savedUser.getName());
         userDTO.setEmail(savedUser.getEmail());
+//        userDTO.setPoints(savedUser.);
         // Note: Password is excluded from the UserDTO for security reasons
 
         return userDTO;
@@ -154,6 +155,7 @@ public class UserService {
         if (taskDTO.getStatus() == null ) {
             taskDTO.setStatus("pending"); // Format as String (e.g., "2024-12-17")
         }
+        taskDTO.setPoints(taskDTO.getPoints());
 
         // Convert DTO to Entity
         Task task = TaskMapper.toEntity(taskDTO);

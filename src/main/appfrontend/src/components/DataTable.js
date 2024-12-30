@@ -18,6 +18,7 @@ export default function TaskTable({
     status: task.status,
     addedDate: task.addedDate || "N/A",
     completionDate: task.completionDate || "N/A",
+    points: task.points ?? 0 ,
   }));
 
   // Define columns
@@ -41,6 +42,7 @@ export default function TaskTable({
         />
       ),
     },
+    { field: "points", headerName: "Points", width: 100, editable: true },
     {
       field: "delete",
       headerName: "Delete",

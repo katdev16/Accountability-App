@@ -17,6 +17,7 @@ const TaskList = () => {
     const loadTasks = async () => {
       try {
         const userTasks = await fetchTasksForUser(userId);
+        console.log(userTasks)
         setTasks(userTasks);
       } catch (err) {
         setError(err.message);
