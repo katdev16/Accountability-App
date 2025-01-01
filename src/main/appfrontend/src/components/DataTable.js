@@ -18,7 +18,7 @@ export default function TaskTable({
     status: task.status,
     addedDate: task.addedDate || "N/A",
     completionDate: task.completionDate || "N/A",
-    points: task.points ?? 0 ,
+    points: task.points ,
   }));
 
   // Define columns
@@ -42,7 +42,7 @@ export default function TaskTable({
         />
       ),
     },
-    { field: "points", headerName: "Points", width: 100, editable: true },
+    { field: "points", headerName: "Points", width: 100},
     {
       field: "delete",
       headerName: "Delete",
@@ -83,7 +83,36 @@ export default function TaskTable({
     return updatedTask; // Return updated row
   };
 
+  // Function to calculate completed points percentage
+const getCompletedPointsPercentage = () => {
+  const completedTasks = tasks.filter((task) => task.status === "completed");
+  const completedPoints = completedTasks.reduce((sum, task) => sum + task.points, 0);
+  const totalPoints = tasks.reduce((sum, task) => sum + task.points, 0);
+  
+  if (totalPoints === 0) return 0; // Avoid division by zero
+  return ((completedPoints / totalPoints) * 100).toFixed(2); // Return percentage with 2 decimal places
+};
+
+const getScoreFromStatus = () => {
+  const completedTasks = tasks.filter((task) => task.status === "completed");
+  const incompleteTasks = tasks.filter((task) => task.status !== "completed");
+
+  // Calculate points for completed and incomplete tasks
+  const completedPoints = completedTasks.reduce((sum, task) => sum + task.points, 0);
+  const incompletePoints = incompleteTasks.reduce((sum, task) => sum + task.points, 0);
+
+  // Total points available
+  const totalPoints = tasks.reduce((sum, task) => sum + task.points, 0);
+
+  // Calculate score as (Completed Points - Incomplete Points) / Total Points * 100
+  if (totalPoints === 0) return 0; // Avoid division by zero
+  return (((completedPoints - incompletePoints) / totalPoints) * 100).toFixed(2); // Return percentage
+};
+
+
+
   return (
+    <>
     <Paper sx={{ height: 400, width: "100%" }}>
       <DataGrid
         rows={rows}
@@ -96,5 +125,10 @@ export default function TaskTable({
         experimentalFeatures={{ newEditingApi: true }} // Enable new editing API
       />
     </Paper>
+      <div style={{ marginTop: "20px", textAlign: "center" }}>
+      <strong> Task Completion Percentage: </strong>
+      {getScoreFromStatus()}%
+    </div>
+    </>
   );
 }

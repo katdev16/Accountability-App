@@ -155,7 +155,7 @@ public class UserService {
         if (taskDTO.getStatus() == null ) {
             taskDTO.setStatus("pending"); // Format as String (e.g., "2024-12-17")
         }
-        taskDTO.setPoints(taskDTO.getPoints());
+
 
         // Convert DTO to Entity
         Task task = TaskMapper.toEntity(taskDTO);
@@ -187,6 +187,7 @@ public class UserService {
             taskDTO.setStatus(task.getStatus());
             taskDTO.setAddedDate(task.getAddedDate());
             taskDTO.setCompletionDate(task.getCompletionDate());
+            taskDTO.setPoints(task.getPoints());
             return taskDTO;
         }).collect(Collectors.toList());
     }

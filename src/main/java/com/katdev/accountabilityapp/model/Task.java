@@ -20,7 +20,7 @@ public class Task {
 
     public Task() {
         this.status = "Pending"; // Default value for status
-        this.points = 0; // Default points value
+        // Default points value
     }
 
     @ManyToOne

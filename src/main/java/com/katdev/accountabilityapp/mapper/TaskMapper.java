@@ -27,6 +27,7 @@ public class TaskMapper {
         task.setStatus(taskDTO.getStatus());
         task.setAddedDate(taskDTO.getAddedDate());
         task.setCompletionDate(taskDTO.getCompletionDate());
+        task.setPoints(taskDTO.getPoints());
         return task;
     }
 }
