@@ -95,14 +95,20 @@ const getCompletedPointsPercentage = () => {
 
 const getScoreFromStatus = () => {
   const completedTasks = tasks.filter((task) => task.status === "completed");
+  console.log('completed')
+  console.log(completedTasks);
   const incompleteTasks = tasks.filter((task) => task.status !== "completed");
+  console.log("incompleted")
+  console.log(incompleteTasks);
 
   // Calculate points for completed and incomplete tasks
   const completedPoints = completedTasks.reduce((sum, task) => sum + task.points, 0);
   const incompletePoints = incompleteTasks.reduce((sum, task) => sum + task.points, 0);
 
   // Total points available
-  const totalPoints = tasks.reduce((sum, task) => sum + task.points, 0);
+  // const totalPoints = tasks.reduce((sum, task) => sum + task.points, 0);
+
+  const totalPoints = completedPoints + incompletePoints;
 
   // Calculate score as (Completed Points - Incomplete Points) / Total Points * 100
   if (totalPoints === 0) return 0; // Avoid division by zero

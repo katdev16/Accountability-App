@@ -14,7 +14,7 @@ public class User {
 
     private String email;
 
-//    private String password; // New password field
+    private String password; // New password field
 
     // One-to-Many relationship with Task
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -53,13 +53,13 @@ public class User {
         this.email = email;
     }
 
-//    public String getPassword() {
-//        return password; // Getter for password
-//    }
-//
-//    public void setPassword(String password) {
-//        this.password = password; // Setter for password
-//    }
+    public String getPassword() {
+        return password; // Getter for password
+    }
+
+    public void setPassword(String password) {
+        this.password = password; // Setter for password
+    }
 
     public List<Task> getTasks() {
         return tasks;

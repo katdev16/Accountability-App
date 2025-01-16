@@ -2,6 +2,7 @@ package com.katdev.accountabilityapp.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.HashMap;
 
 @Entity
 public class Task {

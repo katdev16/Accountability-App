@@ -9,7 +9,7 @@ import com.katdev.accountabilityapp.repository.TaskRepository;
 import com.katdev.accountabilityapp.mapper.TaskMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,6 +21,8 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
     private TaskRepository taskRepository;
@@ -86,7 +88,8 @@ public class UserService {
     public UserDTO createUser(User user) {
 //        // Hash the password before saving the user
 //        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
 
         // Save the user
         User savedUser = userRepository.save(user);
@@ -110,6 +113,10 @@ public class UserService {
         existingUser.setName(updatedUser.getName());
         existingUser.setEmail(updatedUser.getEmail());
 
+        if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
+            existingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+        }
+
         User updated = userRepository.save(existingUser);
 
         // Mapping updated user to UserDTO
@@ -119,6 +126,10 @@ public class UserService {
         userDTO.setEmail(updated.getEmail());
 
         return userDTO;
+    }
+
+    public boolean verifyPassword(String rawPassword, String encodedPassword) {
+        return passwordEncoder.matches(rawPassword, encodedPassword);
     }
 
     // Delete user by ID
