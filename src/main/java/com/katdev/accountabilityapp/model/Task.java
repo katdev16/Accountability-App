@@ -17,7 +17,7 @@ public class Task {
     private LocalDate addedDate; // The date the task was added
     private LocalDate completionDate; // The date the task should be completed
 //    @Column(nullable = false, columnDefinition = "int default 0")
-    private int points; // Points assigned to the task
+    private String points; // Points assigned to the task
 
     public Task() {
         this.status = "Pending"; // Default value for status
@@ -87,11 +87,11 @@ public class Task {
         this.completionDate = completionDate;
     }
 
-    public int getPoints() {
+    public String getPoints() {
         return points;
     }
 
-    public void setPoints(int points) {
+    public void setPoints(String  points) {
         this.points = points;
     }
 }

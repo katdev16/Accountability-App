@@ -26,6 +26,10 @@ public class TaskServiceImpl implements TaskService{
             throw new RuntimeException("Completion date cannot be before the added date");
         }
 
+        if (task.getPoints() == null) {
+            task.setPoints("low");
+        }
+
         return taskRepository.save(task);
     }
 

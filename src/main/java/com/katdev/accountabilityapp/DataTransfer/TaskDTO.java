@@ -9,7 +9,7 @@ public class TaskDTO {
     private String status;
     private LocalDate addedDate;
     private LocalDate completionDate;
-    private int points;
+    private String points;
 
     // Getters and setters...
 
@@ -61,11 +61,11 @@ public class TaskDTO {
         this.completionDate = completionDate;
     }
 
-    public int getPoints() {
+    public String getPoints() {
         return points;
     }
 
-    public void setPoints(int points) {
+    public void setPoints(String points) {
         this.points = points;
     }
 }

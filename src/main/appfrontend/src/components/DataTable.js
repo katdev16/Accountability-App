@@ -18,7 +18,7 @@ export default function TaskTable({
     status: task.status,
     addedDate: task.addedDate || "N/A",
     completionDate: task.completionDate || "N/A",
-    points: task.points ,
+    priority: task.priority ,
   }));
 
   // Define columns
@@ -42,7 +42,7 @@ export default function TaskTable({
         />
       ),
     },
-    { field: "points", headerName: "Points", width: 100},
+    { field: "priority", headerName: "Priority", width: 100},
     {
       field: "delete",
       headerName: "Delete",
@@ -58,14 +58,13 @@ export default function TaskTable({
   ];
 
 
-  // Handle row deletion
   const handleDelete = async (taskId) => {
     if (window.confirm("Are you sure you want to delete this task?")) {
       try {
-        // Make API call to delete the task
+        
         await deleteTask(taskId);
 
-        // Remove the task from the local state
+        
         setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
         alert("Task deleted successfully!");
       } catch (error) {
@@ -75,15 +74,15 @@ export default function TaskTable({
     }
   };
 
-  // Function for handling row updates in the DataGrid
+  
   const processRowUpdate = async (newRow) => {
     console.log("Updated row:", newRow); // Debug the updated row data
     const updatedTask = { ...newRow };
     await TaskUpdate(updatedTask, setTasks); // Pass setTasks correctly
-    return updatedTask; // Return updated row
+    return updatedTask; 
   };
 
-  // Function to calculate completed points percentage
+
 const getCompletedPointsPercentage = () => {
   const completedTasks = tasks.filter((task) => task.status === "completed");
   const completedPoints = completedTasks.reduce((sum, task) => sum + task.points, 0);
