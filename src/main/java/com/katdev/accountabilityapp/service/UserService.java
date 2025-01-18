@@ -27,18 +27,17 @@ public class UserService {
     @Autowired
     private TaskRepository taskRepository;
 
-    // Fetch a user by ID, return as UserDTO with tasks
+
     public UserDTO getUserById(int id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        // Mapping user entity to user DTO
+
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
         userDTO.setName(user.getName());
         userDTO.setEmail(user.getEmail());
 
-        // Map tasks to TaskDTO
         List<TaskDTO> taskDTOs = user.getTasks().stream().map(task -> {
             TaskDTO taskDTO = new TaskDTO();
             taskDTO.setId(task.getId());
@@ -55,7 +54,7 @@ public class UserService {
         return userDTO;
     }
 
-    // Fetch all users as UserDTO list
+
     public List<UserDTO> getAllUsers() {
         List<User> users = userRepository.findAll();
 
@@ -82,7 +81,6 @@ public class UserService {
         }).collect(Collectors.toList());
     }
 
-    // Create a new user
 
 
     public UserDTO createUser(User user) {
@@ -91,7 +89,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
 
-        // Save the user
+
         User savedUser = userRepository.save(user);
 
         // Map the saved user to a UserDTO
@@ -100,12 +98,11 @@ public class UserService {
         userDTO.setName(savedUser.getName());
         userDTO.setEmail(savedUser.getEmail());
 //        userDTO.setPoints(savedUser.);
-        // Note: Password is excluded from the UserDTO for security reasons
+
 
         return userDTO;
     }
 
-    // Update user details by ID
     public UserDTO updateUser(int id, User updatedUser) {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -119,7 +116,6 @@ public class UserService {
 
         User updated = userRepository.save(existingUser);
 
-        // Mapping updated user to UserDTO
         UserDTO userDTO = new UserDTO();
         userDTO.setId(updated.getId());
         userDTO.setName(updated.getName());
@@ -132,7 +128,7 @@ public class UserService {
         return passwordEncoder.matches(rawPassword, encodedPassword);
     }
 
-    // Delete user by ID
+
     public String deleteUserById(int id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -142,7 +138,7 @@ public class UserService {
         return "User deleted successfully";
     }
 
-    // Method to assign a task to a user (optional)
+
     public void assignTaskToUser(int userId, int taskId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -154,28 +150,27 @@ public class UserService {
         taskRepository.save(task);
     }
 
-    // In UserServiceImpl.java
 
     public TaskDTO createTaskForUser(int userId, TaskDTO taskDTO) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         if (taskDTO.getAddedDate() == null ) {
-            taskDTO.setAddedDate(LocalDate.now()); // Format as String (e.g., "2024-12-17")
+            taskDTO.setAddedDate(LocalDate.now());
         }
         if (taskDTO.getStatus() == null ) {
-            taskDTO.setStatus("pending"); // Format as String (e.g., "2024-12-17")
+            taskDTO.setStatus("pending");
         }
 
 
-        // Convert DTO to Entity
+
         Task task = TaskMapper.toEntity(taskDTO);
         task.setUser(user);
 
-        // Save the Task
+
         Task savedTask = taskRepository.save(task);
 
-        // Convert saved entity to DTO and return
+
         return TaskMapper.toDTO(savedTask);
     }
 

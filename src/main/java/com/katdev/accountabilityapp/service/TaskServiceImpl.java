@@ -54,42 +54,41 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public Task updateTask(int id, Task updatedTask) {
-        // Check if the task exists
+
         Task existingTask = taskRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Task with ID " + id + " not found"));
 
-        // Update task details
         existingTask.setTitle(updatedTask.getTitle());
         existingTask.setDescription(updatedTask.getDescription());
         existingTask.setStatus(updatedTask.getStatus());
         existingTask.setCompletionDate(updatedTask.getCompletionDate());
 
-        // Save updated task to the database
+
         return taskRepository.save(existingTask);
     }
 
 
     @Override
     public void deleteTaskById(int id) {
-        // Check if the task exists
+
         Task existingTask = taskRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Task with ID " + id + " not found"));
 
-        // Delete the task
+
         taskRepository.delete(existingTask);
     }
 
 
     @Override
     public Task markTaskAsCompleted(int id) {
-        // Check if the task exists
+
         Task existingTask = taskRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Task with ID " + id + " not found"));
 
-        // Update the status to "Completed"
+
         existingTask.setStatus("Completed");
 
-        // Save the updated task
+
         return taskRepository.save(existingTask);
     }
 
@@ -128,7 +127,7 @@ public class TaskServiceImpl implements TaskService{
 
         Task updatedTask = taskRepository.save(task);
 
-        // Map to DTO
+
         TaskDTO taskDTO = new TaskDTO();
         taskDTO.setId(updatedTask.getId());
         taskDTO.setTitle(updatedTask.getTitle());
