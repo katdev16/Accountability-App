@@ -1,0 +1,17 @@
+com/katdev/accountabilityapp/service/TaskServiceImpl.class
+com/katdev/accountabilityapp/config/SecurityConfig.class
+com/katdev/accountabilityapp/mapper/TaskMapper.class
+com/katdev/accountabilityapp/AccountabilityApp.class
+com/katdev/accountabilityapp/repository/UserRepository.class
+com/katdev/accountabilityapp/service/UserService.class
+com/katdev/accountabilityapp/repository/TaskRepository.class
+com/katdev/accountabilityapp/service/TaskService.class
+com/katdev/accountabilityapp/DataTransfer/TaskDTO.class
+com/katdev/accountabilityapp/DataTransfer/UserDTO.class
+com/katdev/accountabilityapp/controller/UserController.class
+Users.class
+com/katdev/accountabilityapp/model/User.class
+com/katdev/accountabilityapp/model/Task.class
+com/katdev/accountabilityapp/config/CorsConfig.class
+com/katdev/accountabilityapp/DataTransfer/LoginRequest.class
+com/katdev/accountabilityapp/controller/TaskController.class
