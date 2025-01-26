@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 
 @Entity
+@Table(name = "tasks")
 public class Task {
 
     @Id
