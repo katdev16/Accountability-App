@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080"; // Replace with your backend URL
+// const API_URL = "http://localhost:8080"; 
+const API_URL="https://accountability-app-3-ptjy.onrender.com"
 
 // Login user
 export const loginUser = async (email) => {
